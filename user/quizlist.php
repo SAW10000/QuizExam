@@ -4,6 +4,7 @@
     {
         header('location:../index.php');
     }
+    $userid=$_SESSION["id"];
     
 ?>
 <!DOCTYPE html>
@@ -41,6 +42,10 @@ if($_SESSION["uname"]) {
                <?php 
                 while($row=mysqli_fetch_array($result))
                 {
+                    $categoryid=$row['id'];
+                    $sqlstatus="SELECT * FROM `quizdb`.`useranswertbl` WHERE `userid`='$userid' AND `categoryid`='$categoryid' AND `isactive`=1";
+                    $resultstatus=mysqli_query($con,$sqlstatus);
+                    
             ?>
             
             
@@ -52,8 +57,21 @@ if($_SESSION["uname"]) {
                             <p class="card-text"><?php echo $row['description'] ?><br/>
                               Number Of Question: <?php echo $row['totalquestion'] ?><br/>
                               Marks Per Question: <?php echo $row['mpq'] ?> </p>
+                              <?php
+                               if(mysqli_num_rows($resultstatus)>0)
+                               {
+                              ?>
+                              <a href="viewresult.php?quizid=<?php echo $row['id']; ?>"  class="btn btn-primary">View Result</a>
+                            <?php
+                                }
+                                else{
+                            ?>
                             <a href="viewquizquestion.php?id=<?php echo $row['id']; ?>&title=<?php echo $row['title']; ?>" class="btn btn-primary">View Quiz</a>
-                            <a href="viewresult.php?quizid=<?php echo $row['id']; ?>"  class="btn btn-primary">View Result</a>
+                            <?php
+                                }
+                              ?>
+                            
+                            
                         </div>
                         </div>
                     </div>
