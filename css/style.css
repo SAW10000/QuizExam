@@ -32,17 +32,19 @@
     padding: 0.5rem;
     background: #eeeeee;
   }
-/* Chrome, Safari, Edge, Opera */
+/* Chrome, Safari, Edge, Opera Removing increment decriment from input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
+/* Firefox Removing increment decriment from input */
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
   input,#login,#register,textarea,#phone{
       margin-top:10px ;
       /* width: 50Vw; */
